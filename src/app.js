@@ -23,6 +23,7 @@ async function run () {
   } finally {    
     actions.log('Conexion cerrada')
     await actions.endConn()
+    return true;
   } 
   
 }
