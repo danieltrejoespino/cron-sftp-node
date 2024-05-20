@@ -1,6 +1,44 @@
 require('dotenv').config();
-
+const fs = require('fs');
 const actions = require("./controller/controller")
+
+async function deleteLock() {
+  if (fs.existsSync('lock')) {
+    try {
+        fs.unlinkSync('lock');
+        console.log('Archivo eliminado correctamente');
+    } catch (err) {
+        console.error('Error al eliminar el archivo:', err);
+    }
+} else {
+    console.error('El archivo no existe:', 'lock');
+}  
+}
+
+function isProcessRunning() {
+  return fs.existsSync('lock');
+}
+
+
+
+
+async function startProcess() {
+  if (isProcessRunning()) {
+    console.log('El proceso ya está en ejecución');
+    return;
+  }
+
+  try {
+    fs.writeFileSync('lock', 'running');
+    console.log('El proceso se ha iniciado');
+    await run(); 
+    fs.unlinkSync('lock');
+    console.log('El proceso ha finalizado');
+  } catch (error) {
+    console.error('Error al crear o eliminar el archivo "lock":', error);
+  }
+}
+
 
 async function run () {
   try {
@@ -28,4 +66,4 @@ async function run () {
   
 }
 
-module.exports = run
+module.exports = {deleteLock,isProcessRunning,startProcess}
