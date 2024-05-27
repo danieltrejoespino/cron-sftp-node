@@ -31,7 +31,7 @@ const actions = {
     }
   },
   getLeads: async () => {
-    const regex = /(WINBACK|CALLME)/;
+    const regex = /(WINBACK|CALLME|RASTREATOR)/;
     try {
       const listFiles = await sftp.list('/outbox')
       // const listFiles = await sftp.list('/home/u466684088/domains/jaudica.com/outbox')
