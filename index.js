@@ -4,8 +4,8 @@ const cron = require('node-cron');
  
 
 deleteLock()
-// cron.schedule('*/1 * * * *', async () => {
-cron.schedule('*/30 * 8-19 * * *', async () => {
+cron.schedule('*/1 * * * *', async () => {
+// cron.schedule('*/30 * 8-19 * * *', async () => {
   if (!isProcessRunning()) {
     await startProcess();
   } else {
