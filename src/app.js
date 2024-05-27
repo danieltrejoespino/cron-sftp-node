@@ -70,14 +70,4 @@ async function run () {
 }
 
 module.exports = {deleteLock,isProcessRunning,startProcess}
-
-
-
-
-try {
-  
-} catch (error) {
-  
-}finally{
-
-}
+ 

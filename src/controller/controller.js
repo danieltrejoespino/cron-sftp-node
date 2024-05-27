@@ -7,7 +7,7 @@ const config = {
   host: process.env.sftpHost,
   username: process.env.sftpUser,
   password: process.env.sftpPass,
-  port: 65002
+  // port: 65002
 }
 const sftp = new Client()
 
@@ -33,8 +33,8 @@ const actions = {
   getLeads: async () => {
     const regex = /(WINBACK|CALLME)/;
     try {
-      // const listFiles = await sftp.list('/outbox')
-      const listFiles = await sftp.list('/home/u466684088/domains/jaudica.com/outbox')
+      const listFiles = await sftp.list('/outbox')
+      // const listFiles = await sftp.list('/home/u466684088/domains/jaudica.com/outbox')
       let total = 0
 
       if (!listFiles.length) {
@@ -46,7 +46,8 @@ const actions = {
           if (element.name.endsWith('.csv')) {
             if (regex.test(element.name)) {
               // console.log(element.name);
-              let remoteFilePath = `/home/u466684088/domains/jaudica.com/outbox/${element.name}`
+              // let remoteFilePath = `/home/u466684088/domains/jaudica.com/outbox/${element.name}`
+              let remoteFilePath = `/outbox/${element.name}`
               const localFilePath = path.join(publicFolderPath, element.name)
               await sftp.get(remoteFilePath, localFilePath)
               total ++
