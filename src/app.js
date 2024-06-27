@@ -20,6 +20,20 @@ function isProcessRunning() {
 }
 
 
+async function clean() {
+  
+  const result= await actions.cleanBackLeads()
+  console.log(result)
+
+}
+
+
+
+
+
+
+
+
 
 
 async function startProcess() {
@@ -69,5 +83,10 @@ async function run () {
   
 }
 
-module.exports = {deleteLock,isProcessRunning,startProcess}
+module.exports = {
+  deleteLock,
+  clean,
+  isProcessRunning,
+  startProcess
+}
  
